@@ -1,98 +1,145 @@
 # ⚡ TADS Store
 
-> E-commerce de periféricos e tecnologia — projeto acadêmico completo com React + Vite, desenvolvido em 4 etapas progressivas.
+E-commerce de periféricos e tecnologia desenvolvido com React + Vite como projeto acadêmico da disciplina de Desenvolvimento Web.
 
-## 🛠 Stack
-
-- **React 18** — componentização, hooks, context API
-- **Vite** — bundler ultrarrápido
-- **React Router DOM v7** — SPA com roteamento client-side
-- **CSS customizado** — design tokens próprios, sem frameworks externos
-- **DummyJSON API** — produtos reais via fetch
+🌐 **Deploy online:** https://tads-store-one.vercel.app/
+📦 **Repositório:** https://github.com/vojnovskis/tads-store
 
 ---
 
-## 📁 Estrutura de pastas
+## 🚀 Como rodar localmente
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/vojnovskis/tads-store.git
+
+# 2. Entre na pasta
+cd tads-store
+
+# 3. Instale as dependências
+npm install
+
+# 4. Inicie o servidor de desenvolvimento
+npm run dev
+
+# 5. Acesse no navegador
+# http://localhost:5173
+```
+
+---
+
+## 🔐 Usuário e senha de teste
+
+| Campo | Valor |
+|-------|-------|
+| E-mail | aluno@tads.com |
+| Senha | tads2025 |
+
+---
+
+## ✅ Funcionalidades implementadas
+
+### Etapa 1 — Componentização
+- Componente `Layout` com `children` (Header + Main + Footer persistentes)
+- Componente `Cabecalho` com navegação e badge do carrinho
+- Componente `Rodape` com links organizados em colunas
+- Componente `Vitrine` com grid responsivo de produtos
+- Componente `ProdutoCard` reutilizável com props
+- Componente `Botao` polimórfico (variantes: primario, secundario, fantasma)
+- Componente `Selo` para badges (frete grátis, desconto, estoque, categoria)
+- Renderização condicional (frete grátis, pouco estoque, esgotado, desconto)
+- Lista de produtos renderizada com `.map()`
+
+### Etapa 2 — Estado, Hooks e API
+- Hook customizado `useProdutos` com `useState` e `useEffect`
+- Hook customizado `useProduto` para busca de produto por ID
+- Estados de `carregando` (skeleton animado) e `erro`
+- **Busca por nome** em tempo real
+- **Filtro por categoria** com botões interativos
+- Estado vazio quando nenhum produto é encontrado nos filtros
+- 20 produtos em português com dados completos
+
+### Etapa 3 — Navegação SPA
+- React Router DOM configurado com `BrowserRouter`
+- Rota `/` — catálogo de produtos
+- Rota `/produto/:id` — detalhe do produto com `useParams`
+- Rota `/carrinho` — página do carrinho de compras
+- Rota `/login` — tela de autenticação
+- Rota `/minha-conta` — área protegida
+- Rota `*` — página 404 personalizada
+- Navegação sem recarregar a página (`<Link>`)
+- Navegação programática com `useNavigate`
+- Breadcrumb na página de detalhe
+
+### Etapa 4 — Autenticação
+- `AuthContext` com `logado`, `usuario`, `entrar()` e `sair()`
+- Tela de login com formulário controlado (`useState`)
+- Validação de credenciais com feedback de erro
+- Estado de carregamento durante o login
+- Toggle para mostrar/ocultar senha
+- `RotaProtegida` — redireciona para `/login` se não autenticado
+- Header dinâmico: exibe "Entrar" ou avatar + nome + botão "Sair"
+- Logout funcional que limpa o estado global
+- Página `/minha-conta` protegida com resumo do carrinho e perfil
+
+### Bônus
+- 🌐 **Deploy no Vercel** — projeto publicado online
+- 🛒 **Carrinho de compras completo** — adicionar, remover, alterar quantidade, calcular total e frete
+- 🎨 **Design próprio** — identidade visual escura com paleta roxa, tipografia Syne + Inter, efeitos glow
+
+---
+
+## 🗂 Estrutura do projeto
 
 ```
 src/
 ├── components/
-│   ├── Botao            # Polimórfico: primario | secundario | fantasma
-│   ├── Cabecalho        # Header sticky + glassmorphism + badge carrinho + auth
-│   ├── Layout           # Wrapper com children (Header + Main + Footer)
-│   ├── ProdutoCard      # Card com renderização condicional + link de rota
-│   ├── Rodape           # Footer com colunas de links
-│   ├── RotaProtegida    # HOC que redireciona usuário não autenticado
-│   ├── Selo             # Badge reutilizável (frete, desconto, estoque...)
-│   └── Vitrine          # Grid responsivo + skeleton loading + estado de erro
-│
+│   ├── Botao            # Botão reutilizável com variantes
+│   ├── Cabecalho        # Header sticky com glassmorphism
+│   ├── FiltroBusca      # Busca e filtro por categoria
+│   ├── Layout           # Wrapper com Header + Main + Footer
+│   ├── ProdutoCard      # Card de produto clicável
+│   ├── Rodape           # Footer
+│   ├── RotaProtegida    # HOC de autenticação
+│   ├── Selo             # Badge/tag reutilizável
+│   └── Vitrine          # Grid de produtos
 ├── context/
-│   ├── AuthContext      # logado, usuario, entrar(), sair()
-│   └── CarrinhoContext  # itens, adicionarItem, removerItem, alterarQuantidade...
-│
+│   ├── AuthContext      # Estado global de autenticação
+│   └── CarrinhoContext  # Estado global do carrinho
+├── data/
+│   └── produtos.js      # 20 produtos em português
 ├── hooks/
-│   ├── useProdutos      # Busca lista de produtos na API (loading/error/data)
-│   └── useProduto       # Busca produto único por id
-│
+│   ├── useProduto       # Busca produto por ID
+│   └── useProdutos      # Lista todos os produtos
 ├── pages/
-│   ├── Home             # Hero + stats + vitrine com API real
-│   ├── ProdutoDetalhe   # Galeria, preço, botão carrinho, breadcrumb
-│   ├── Carrinho         # Lista itens, quantidade, frete, total
-│   ├── Login            # Form controlado, validação, credenciais de teste
-│   ├── MinhaConta       # Rota protegida, resumo carrinho, perfil
-│   └── NaoEncontrado    # Página 404 estilizada
-│
+│   ├── Carrinho         # Página do carrinho
+│   ├── Home             # Página inicial
+│   ├── Login            # Tela de login
+│   ├── MinhaConta       # Área protegida
+│   ├── NaoEncontrado    # Página 404
+│   └── ProdutoDetalhe   # Detalhe do produto
 └── styles/
-    └── global.css       # Design tokens (CSS custom properties) e reset
+    └── global.css       # Design tokens e reset
 ```
 
 ---
 
-## 🚀 Como rodar
+## 🛠 Tecnologias utilizadas
 
-```bash
-git clone https://github.com/seu-usuario/tads-store.git
-cd tads-store
-npm install
-npm run dev
-# Acesse: http://localhost:5173
-```
-
----
-
-## 🔐 Login de teste
-
-| Campo | Valor         |
-|-------|---------------|
-| Email | aluno@tads.com |
-| Senha | tads2025       |
-
-> Na tela de login há um botão "Preencher automaticamente" para facilitar.
+- **React 18** — biblioteca de UI
+- **Vite** — bundler e servidor de desenvolvimento
+- **React Router DOM v7** — roteamento SPA
+- **CSS customizado** — sem frameworks, design tokens próprios
+- **Google Fonts** — Syne (display) + Inter (corpo)
+- **Vercel** — deploy e hospedagem gratuita
 
 ---
 
-## 🗺 Rotas disponíveis
+## 📸 Telas principais
 
-| Rota           | Descrição                  | Protegida |
-|----------------|----------------------------|-----------|
-| `/`            | Catálogo de produtos        | Não       |
-| `/produto/:id` | Detalhe do produto          | Não       |
-| `/carrinho`    | Carrinho de compras         | Não       |
-| `/login`       | Tela de autenticação        | Não       |
-| `/minha-conta` | Área do usuário             | ✅ Sim    |
-| `/*`           | Página 404                  | Não       |
-
----
-
-## 📋 Etapas implementadas
-
-| Etapa | Status | Conceitos |
-|-------|--------|-----------|
-| 1 | ✅ | Componentização, props, `.map()`, renderização condicional, CSS próprio |
-| 2 | ✅ | `useState`, `useEffect`, fetch API, custom hooks, CarrinhoContext |
-| 3 | ✅ | React Router v7, BrowserRouter, `useParams`, `useNavigate`, página de carrinho |
-| 4 | ✅ | AuthContext, form controlado, rota protegida, header dinâmico, logout |
-
----
-
-Desenvolvido com React + Vite · Projeto TADS
+- Catálogo com busca e filtro por categoria
+- Página de detalhe do produto com galeria e botão de carrinho
+- Carrinho com controle de quantidade e cálculo de frete
+- Tela de login com formulário controlado
+- Área protegida `/minha-conta` com perfil e resumo do carrinho
+- Página 404 personalizada
