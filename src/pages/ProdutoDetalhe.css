@@ -6,6 +6,7 @@
   color: var(--text-muted);
   margin-bottom: 32px;
   flex-wrap: wrap;
+  padding-top: 8px;
 }
 .detalhe__breadcrumb a:hover { color: var(--purple-light); }
 .detalhe__breadcrumb-atual { color: var(--text-primary); font-weight: 500; }
@@ -48,7 +49,7 @@
 .detalhe__thumb img { width: 100%; height: 100%; object-fit: cover; }
 
 /* Info */
-.detalhe__selos { display: flex; flex-wrap: wrap; gap: 6px; }
+.detalhe__selos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 .detalhe__marca {
   font-size: 12px;
   font-weight: 600;

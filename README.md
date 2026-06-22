@@ -143,3 +143,4 @@ src/
 - Tela de login com formulário controlado
 - Área protegida `/minha-conta` com perfil e resumo do carrinho
 - Página 404 personalizada
+

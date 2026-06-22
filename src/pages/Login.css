@@ -8,11 +8,11 @@
 
 .login__card {
   width: 100%;
-  max-width: 420px;
+  max-width: 480px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 40px;
+  padding: 48px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -28,8 +28,9 @@
 }
 .login__titulo {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
+  white-space: nowrap;
 }
 .login__subtitulo { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
 

@@ -38,8 +38,7 @@ function Home() {
         <div className="hero__conteudo">
           <span className="hero__eyebrow">⚡ Nova coleção disponível</span>
           <h1 className="hero__titulo">
-            Periféricos que<br />
-            <span className="hero__titulo-destaque">elevam seu setup</span>
+            Periféricos que <span className="hero__titulo-destaque">elevam seu setup</span>
           </h1>
           <p className="hero__descricao">
             Os melhores equipamentos tech com entrega rápida e frete grátis selecionado.
