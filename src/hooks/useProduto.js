@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import produtos from '../data/produtos';
 
 export function useProduto(id) {
   const [produto, setProduto] = useState(null);
@@ -7,25 +8,21 @@ export function useProduto(id) {
 
   useEffect(() => {
     if (!id) return;
-    let cancelado = false;
 
-    async function buscar() {
-      try {
-        setCarregando(true);
-        setErro(null);
-        const res = await fetch(`https://dummyjson.com/products/${id}`);
-        if (!res.ok) throw new Error(`Produto não encontrado (${res.status})`);
-        const data = await res.json();
-        if (!cancelado) setProduto(data);
-      } catch (err) {
-        if (!cancelado) setErro(err.message);
-      } finally {
-        if (!cancelado) setCarregando(false);
+    setCarregando(true);
+    setErro(null);
+
+    const timer = setTimeout(() => {
+      const encontrado = produtos.find((p) => p.id === Number(id));
+      if (encontrado) {
+        setProduto(encontrado);
+      } else {
+        setErro('Produto não encontrado.');
       }
-    }
+      setCarregando(false);
+    }, 400);
 
-    buscar();
-    return () => { cancelado = true; };
+    return () => clearTimeout(timer);
   }, [id]);
 
   return { produto, carregando, erro };
