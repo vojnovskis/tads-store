@@ -1,0 +1,46 @@
+.nao-encontrado {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  position: relative;
+  padding: 40px 20px;
+}
+
+.nao-encontrado__orb {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: var(--purple);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.nao-encontrado__codigo {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 18vw, 140px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, var(--purple-light), rgba(167,139,250,0.3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.nao-encontrado__titulo {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.nao-encontrado__msg {
+  color: var(--text-muted);
+  max-width: 300px;
+  font-size: 15px;
+}
